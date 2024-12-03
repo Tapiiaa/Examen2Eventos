@@ -3,6 +3,7 @@ package com.example.examen2eventos.app1;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,26 +36,44 @@ public class ViewScheduleActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, subjectsList);
         listViewSubjects.setAdapter(adapter);
 
-        // Referencia a Firebase
         databaseReference = FirebaseDatabase.getInstance().getReference("Subjects");
 
-        // Cargar datos desde Firebase
-        loadSubjects();
+        configureDayButtons();
     }
 
-    private void loadSubjects() {
-        databaseReference.addValueEventListener(new ValueEventListener() {
+    private void configureDayButtons() {
+        int[] buttonIds = {
+                R.id.btn_monday,
+                R.id.btn_tuesday,
+                R.id.btn_wednesday,
+                R.id.btn_thursday,
+                R.id.btn_friday
+        };
+
+        String[] days = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes"};
+
+        for (int i = 0; i < buttonIds.length; i++) {
+            int finalI = i;
+            findViewById(buttonIds[i]).setOnClickListener(v -> loadSubjectsForDay(days[finalI]));
+        }
+    }
+
+    private void loadSubjectsForDay(String day) {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 subjectsList.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Subject subject = dataSnapshot.getValue(Subject.class);
-                    if (subject != null) {
-                        String details = subject.getName() + " - " + subject.getDays() + " - " + subject.getHours();
-                        subjectsList.add(details);
+                    if (subject != null && subject.getDays().contains(day)) {
+                        subjectsList.add(subject.getName() + " - " + subject.getHours());
                     }
                 }
                 adapter.notifyDataSetChanged();
+                if (subjectsList.isEmpty()) {
+                    subjectsList.add("No hay materias para " + day);
+                    adapter.notifyDataSetChanged();
+                }
             }
 
             @Override

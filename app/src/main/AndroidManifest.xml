@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permiso para acceso a Internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -48,7 +51,6 @@
             android:exported="true"
             android:theme="@style/Theme.Examen2Eventos" />
 
-
         <!-- App2 Activities -->
         <activity android:name=".app2.App2MainActivity" android:exported="true" />
 
@@ -56,5 +58,4 @@
         <activity android:name=".app3.App3MainActivity" android:exported="true" />
 
     </application>
-
 </manifest>

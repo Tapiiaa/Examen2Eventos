@@ -4,21 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="16dp">
 
     <TextView
         android:id="@+id/txt_now_subject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Asignatura Actual"
+        android:text="Cargando la última asignatura añadida..."
         android:textSize="18sp"
-        android:gravity="center"
-        android:layout_marginBottom="8dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="No hay asignaturas en curso ahora mismo."
-        android:textSize="16sp"
-        android:gravity="center" />
+        android:textAlignment="center" />
 </LinearLayout>
