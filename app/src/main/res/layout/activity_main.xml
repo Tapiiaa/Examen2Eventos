@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <Button
+        android:id="@+id/btn_app1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="App 1: Gestión de Horarios" />
+
+    <Button
+        android:id="@+id/btn_app2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="App 2: Listado de Eventos"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/btn_app3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="App 3: Farmacias de Zaragoza"
+        android:layout_marginTop="16dp" />
+</LinearLayout>
