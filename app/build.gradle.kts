@@ -2,7 +2,9 @@ plugins {
     alias(libs.plugins.android.application) // Si usas alias
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("com.google.gms.google-services")   // Este es necesario para Firebase
+    id("com.google.gms.google-services")
+
+// Este es necesario para Firebase
 }
 
 android {
@@ -64,6 +66,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation ("com.google.firebase:firebase-database:20.2.2")
     implementation("androidx.appcompat:appcompat:1.6.1") // Versión estable
     implementation("androidx.core:core-ktx:1.15.0")
+    implementation ("com.google.android.material:material:1.9.0")
+    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
 }

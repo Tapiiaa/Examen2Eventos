@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center">
+    android:padding="16dp">
 
     <TextView
-        android:id="@+id/tv_current_subject"
-        android:layout_width="wrap_content"
+        android:id="@+id/txt_now_subject"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Materia Actual"
-        android:textSize="24sp"
-        android:layout_gravity="center"
-        android:paddingBottom="16dp" />
+        android:text="Asignatura Actual"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginBottom="8dp" />
 
     <TextView
-        android:id="@+id/tv_subject_details"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Detalles de la materia"
+        android:text="No hay asignaturas en curso ahora mismo."
         android:textSize="16sp"
-        android:padding="8dp" />
+        android:gravity="center" />
 </LinearLayout>

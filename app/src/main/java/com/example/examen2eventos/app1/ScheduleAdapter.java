@@ -1,6 +1,5 @@
 package com.example.examen2eventos.app1;
 
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

@@ -25,3 +25,4 @@ public class MainActivity extends Activity {
         btnApp3.setOnClickListener(v -> startActivity(new Intent(this, App3MainActivity.class)));
     }
 }
+

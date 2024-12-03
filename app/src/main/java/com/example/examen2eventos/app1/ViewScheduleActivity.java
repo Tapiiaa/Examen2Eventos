@@ -1,55 +1,66 @@
 package com.example.examen2eventos.app1;
 
-
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.examen2eventos.R;
+import com.example.examen2eventos.app1.Subject;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ViewScheduleActivity extends AppCompatActivity {
 
-    private RecyclerView rvSchedule;
-    private ScheduleAdapter adapter;
-    private List<Subject> subjectList;
+    private ListView listViewSubjects;
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> subjectsList;
+
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_schedule);
 
-        rvSchedule = findViewById(R.id.rv_schedule);
-        rvSchedule.setLayoutManager(new LinearLayoutManager(this));
+        listViewSubjects = findViewById(R.id.list_view_subjects);
+        subjectsList = new ArrayList<>();
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, subjectsList);
+        listViewSubjects.setAdapter(adapter);
 
-        subjectList = new ArrayList<>();
-        adapter = new ScheduleAdapter(subjectList);
-        rvSchedule.setAdapter(adapter);
+        // Referencia a Firebase
+        databaseReference = FirebaseDatabase.getInstance().getReference("Subjects");
 
-        fetchSchedule();
+        // Cargar datos desde Firebase
+        loadSubjects();
     }
 
-    private void fetchSchedule() {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Subjects");
-
-        databaseReference.get().addOnSuccessListener(snapshot -> {
-            subjectList.clear();
-            for (DataSnapshot data : snapshot.getChildren()) {
-                Subject subject = data.getValue(Subject.class);
-                if (subject != null) {
-                    subjectList.add(subject);
+    private void loadSubjects() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                subjectsList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Subject subject = dataSnapshot.getValue(Subject.class);
+                    if (subject != null) {
+                        String details = subject.getName() + " - " + subject.getDays() + " - " + subject.getHours();
+                        subjectsList.add(details);
+                    }
                 }
+                adapter.notifyDataSetChanged();
             }
-            adapter.notifyDataSetChanged();
-        }).addOnFailureListener(e -> {
-            // Manejar errores aquí si es necesario
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.e("Firebase", "Error al cargar datos", error.toException());
+            }
         });
     }
 }

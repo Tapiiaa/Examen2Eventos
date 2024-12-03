@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/edt_subject_name"
+        android:id="@+id/edt_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre de la materia" />
+        android:hint="Nombre de la asignatura"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/edt_days"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Días (ej: Lunes, Miércoles)" />
+        android:hint="Días (e.g., Lunes, Miércoles)"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/edt_hours"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Horario (ej: 10:00 - 12:00)" />
+        android:hint="Horas (e.g., 08:00-09:30)"
+        android:inputType="text" />
 
     <Button
         android:id="@+id/btn_save"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guardar"
-        android:layout_gravity="center"
+        android:text="Guardar Asignatura"
         android:layout_marginTop="16dp" />
 </LinearLayout>
