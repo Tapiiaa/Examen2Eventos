@@ -52,10 +52,23 @@
             android:theme="@style/Theme.Examen2Eventos" />
 
         <!-- App2 Activities -->
-        <activity android:name=".app2.App2MainActivity" android:exported="true" />
+        <activity
+            android:name=".app2.App2MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Examen2Eventos" />
+        <activity
+            android:name=".app2.AddEventActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Examen2Eventos" />
+        <activity
+            android:name=".app2.EventDetailActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Examen2Eventos" />
 
         <!-- App3 Activities -->
-        <activity android:name=".app3.App3MainActivity" android:exported="true" />
+        <activity
+            android:name=".app3.App3MainActivity"
+            android:exported="true" />
 
     </application>
 </manifest>
