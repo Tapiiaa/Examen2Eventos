@@ -1,51 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp">
 
-    <Button
-        android:id="@+id/btn_monday"
+    <LinearLayout
+        android:id="@+id/days_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lunes"
-        android:layout_marginBottom="8dp" />
+        android:orientation="vertical" />
 
-    <Button
-        android:id="@+id/btn_tuesday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Martes"
-        android:layout_marginBottom="8dp" />
-
-    <Button
-        android:id="@+id/btn_wednesday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Miércoles"
-        android:layout_marginBottom="8dp" />
-
-    <Button
-        android:id="@+id/btn_thursday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Jueves"
-        android:layout_marginBottom="8dp" />
-
-    <Button
-        android:id="@+id/btn_friday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Viernes"
-        android:layout_marginBottom="8dp" />
-
-    <ListView
-        android:id="@+id/list_view_subjects"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@android:color/darker_gray"
-        android:dividerHeight="1dp" />
-</LinearLayout>
-
+</ScrollView>
