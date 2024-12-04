@@ -1,6 +1,8 @@
 # Examen2Eventos
+-------------------------------------
 Realizado por Pedro Alonso Tapia Lobo
-Link a mi repositorio: 
+-------------------------------------
+Link a mi repositorio: https://github.com/Tapiiaa/Examen2Eventos.git
 Proyecto Android desarrollado en Java que implementa tres funcionalidades principales, cada una representada por un ejercicio:
 
 1. **Gestión de asignaturas** (App1)
