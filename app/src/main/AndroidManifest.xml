@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Permiso para acceso a Internet -->
+    <!-- Permisos requeridos -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -18,8 +20,8 @@
 
         <!-- Clave de API para Google Maps -->
         <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="TU_API_KEY_DE_GOOGLE_MAPS" />
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDA_2udnmh6p9-FNWRJo1gnsif1Q7aC8Iw" />
 
         <!-- Main Activity -->
         <activity
@@ -68,7 +70,11 @@
         <!-- App3 Activities -->
         <activity
             android:name=".app3.App3MainActivity"
-            android:exported="true" />
-
+            android:exported="true"
+            android:theme="@style/Theme.Examen2Eventos" />
+        <activity
+            android:name=".app3.PharmacyMapActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Examen2Eventos" />
     </application>
 </manifest>
