@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#f5f5f5">
 
     <TextView
         android:id="@+id/txt_now_subject"
@@ -13,5 +13,8 @@
         android:layout_height="wrap_content"
         android:text="Cargando la última asignatura añadida..."
         android:textSize="18sp"
-        android:textAlignment="center" />
+        android:textColor="@color/purple_500"
+        android:textAlignment="center"
+        android:background="@drawable/rounded_edittext"
+        android:padding="16dp" />
 </LinearLayout>
