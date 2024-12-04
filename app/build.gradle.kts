@@ -11,9 +11,10 @@ android {
     namespace = "com.example.examen2eventos"
     compileSdk = 35
 
+
     defaultConfig {
         applicationId = "com.example.examen2eventos"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -58,6 +59,7 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.androidx.recyclerview)
     implementation(libs.play.services.maps)
+    implementation(libs.places)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
