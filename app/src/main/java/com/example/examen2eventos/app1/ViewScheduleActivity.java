@@ -38,7 +38,7 @@ public class ViewScheduleActivity extends AppCompatActivity {
     }
 
     private void setupDayButtons() {
-        String[] days = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes"};
+        String[] days = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes"};
 
         for (String day : days) {
             Button dayButton = new Button(this);
