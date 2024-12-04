@@ -1,9 +1,10 @@
 package com.example.examen2eventos.app3;
 
-
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,9 +18,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,12 +37,20 @@ import okhttp3.Response;
 public class PharmacyMapActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Button addPharmacyButton;
+    private Marker selectedMarker;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+
+    // Firebase Database Reference
+    private DatabaseReference firebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pharmacy_map);
+
+        // Inicializar Firebase Database
+        firebaseDatabase = FirebaseDatabase.getInstance("https://examen2eventos-default-rtdb.europe-west1.firebasedatabase.app").getReference("Pharmacies");
 
         // Inicializar Places API
         Places.initialize(getApplicationContext(), "AIzaSyDA_2udnmh6p9-FNWRJo1gnsif1Q7aC8Iw");
@@ -50,6 +61,11 @@ public class PharmacyMapActivity extends FragmentActivity implements OnMapReadyC
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
+
+        // Configurar el botón para añadir farmacias
+        addPharmacyButton = findViewById(R.id.addPharmacyButton);
+        addPharmacyButton.setVisibility(View.GONE); // Ocultar al inicio
+        addPharmacyButton.setOnClickListener(v -> addPharmacyToFirebase());
     }
 
     @Override
@@ -67,6 +83,13 @@ public class PharmacyMapActivity extends FragmentActivity implements OnMapReadyC
 
         // Mostrar farmacias reales en Zaragoza
         fetchRealPharmacies(zaragoza);
+
+        // Configurar el clic en los marcadores
+        mMap.setOnMarkerClickListener(marker -> {
+            selectedMarker = marker;
+            addPharmacyButton.setVisibility(View.VISIBLE);
+            return false;
+        });
     }
 
     private boolean checkAndRequestPermissions() {
@@ -130,6 +153,25 @@ public class PharmacyMapActivity extends FragmentActivity implements OnMapReadyC
                 e.printStackTrace();
             }
         });
+    }
+
+    private void addPharmacyToFirebase() {
+        if (selectedMarker != null) {
+            String name = selectedMarker.getTitle();
+            String address = selectedMarker.getSnippet();
+            LatLng location = selectedMarker.getPosition();
+
+            // Crear un objeto de farmacia
+            Pharmacy pharmacy = new Pharmacy(name, address, location.latitude, location.longitude);
+
+            // Guardar en Firebase
+            firebaseDatabase.push().setValue(pharmacy)
+                    .addOnSuccessListener(aVoid -> Toast.makeText(this, "Farmacia añadida a Firebase", Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e -> Toast.makeText(this, "Error al añadir farmacia", Toast.LENGTH_SHORT).show());
+
+            // Ocultar el botón
+            addPharmacyButton.setVisibility(View.GONE);
+        }
     }
 
     @Override
